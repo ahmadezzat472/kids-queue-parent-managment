@@ -14,6 +14,7 @@ import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import TeacherNotifications from "./pages/TeacherNotifications";
+import Administrator from "./pages/Administrator";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,10 @@ const App = () => (
             <Route
               path="/teacher-notifications"
               element={<TeacherNotifications />}
+            />
+            <Route
+              path="/administrator-notifications"
+              element={<Administrator />}
             />
             <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

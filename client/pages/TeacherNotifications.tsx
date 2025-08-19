@@ -24,6 +24,9 @@ const notifications = [
     type: "welcome",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "Teacher",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 2,
@@ -35,6 +38,9 @@ const notifications = [
     type: "status",
     read: true,
     actions: ["Archive", "Delete"],
+    role: "inspector",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -46,6 +52,9 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "school admin",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -57,6 +66,9 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "parent",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -68,6 +80,9 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "teacher",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -79,6 +94,9 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "inspector",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -90,6 +108,9 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "school admin",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -101,13 +122,20 @@ const notifications = [
     type: "waitlist",
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
+    role: "parent",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
 ];
 
 const sidebarItems = [
   { label: "All Filters", active: false },
   { label: "Parent Notifications", active: false, link: "/notifications" },
-  { label: "School Administrator Notifications", active: false },
+  {
+    label: "School Administrator Notifications",
+    active: false,
+    link: "/administrator-notifications",
+  },
   {
     label: "Teacher Notifications",
     active: true,
@@ -205,10 +233,16 @@ export default function TeacherNotifications() {
                             {notif.title}
                           </h4>
                           {!notif.read && (
-                            <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                           )}
+                          <span className="bg-purple-100 border border-purple-300 text-purple-500 p-2 py-1 rounded-lg text-xs">
+                            {notif.role}
+                          </span>
                         </div>
-                        <p className="text-sm text-purple-600">{notif.from}</p>
+                        <p className="text-sm text-gray-600 font-semibold">{notif.from}</p>
+                        <p className="text-sm text-gray-700 mb-2 mt-0.5">
+                          {notif.description}
+                        </p>
                         <p className="text-xs text-purple-500">{notif.date}</p>
                       </div>
                       <div className="flex items-center space-x-1">
