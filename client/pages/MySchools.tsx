@@ -31,6 +31,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const currentSchool = {
   childName: "Emma Johnson",
@@ -155,10 +164,135 @@ export default function MySchools() {
             Manage your children's school applications and waitlists
           </p>
         </div>
-        <Button className="bg-green-600 hover:bg-green-700">
-          <Plus className="w-4 h-4 mr-2" />
-          Add/Edit Current School
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200">
+              <Plus className="w-5 h-5 mr-2" />
+              Add/Edit Current School
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-xl bg-white rounded-xl shadow-2xl border border-gray-200">
+            <DialogHeader className="">
+              <DialogTitle className="text-2xl font-bold text-gray-900">
+                Add/Edit Current School
+              </DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col gap-6 py-6">
+              <div className="flex items-center gap-4">
+                <Input
+                  id="noSchool"
+                  type="checkbox"
+                  className="w-5 h-5 rounded-full"
+                />
+                <Label className="text-sm font-medium text-gray-700 ">
+                  No current school
+                </Label>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label
+                  htmlFor="childName"
+                  className="text-sm font-medium text-gray-700 t"
+                >
+                  Child Name
+                </Label>
+                <Select>
+                  <SelectTrigger className="w-full col-span-2 border-gray-300 rounded-md">
+                    <SelectValue placeholder="Select a child" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="emmajohnson">Emma Johnson</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label
+                  htmlFor="schoolName"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  School Name
+                </Label>
+                <Input
+                  id="schoolName"
+                  value="Little Acorns Daycare"
+                  className="col-span-2 border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3 w-full">
+                <div className="flex flex-col gap-2 ">
+                  <Label
+                    htmlFor="contactFirstName"
+                    className="text-sm font-medium text-gray-700 "
+                  >
+                    Contact First Name
+                  </Label>
+                  <Input
+                    id="contactFirstName"
+                    value="Sarah"
+                    className="col-span-2 border-gray-300 rounded-md"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Label
+                    htmlFor="contactLastName"
+                    className="text-sm font-medium text-gray-700 "
+                  >
+                    Contact Last Name
+                  </Label>
+                  <Input
+                    id="contactLastName"
+                    value="Johnson"
+                    className="col-span-2 border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3 w-full">
+                <div className="flex flex-col gap-2">
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-700 "
+                  >
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    value="sarah.johnson@email.com"
+                    className="col-span-2 border-gray-300 rounded-md"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-gray-700 "
+                  >
+                    Phone
+                  </Label>
+                  <Input
+                    id="phone"
+                    value="(555) 123-4567"
+                    className="col-span-2 border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+              <Button
+                variant="outline"
+                className="col-span-3 mt-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 rounded-md"
+              >
+                + Add Another School
+              </Button>
+            </div>
+            <div className="flex justify-end gap-4 pt-2 border-t border-gray-100">
+              <Button
+                variant="outline"
+                className="text-gray-600 hover:text-gray-800"
+              >
+                Cancel
+              </Button>
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-md">
+                Save
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {/* Current School Section */}
