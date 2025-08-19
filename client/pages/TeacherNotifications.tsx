@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { link } from "fs";
 
 const notifications = [
   {
@@ -45,20 +46,75 @@ const notifications = [
     read: false,
     actions: ["Mark as Read", "Archive", "Delete"],
   },
+  {
+    id: 3,
+    title: "Waitlist Position Update",
+    from: "Little Stars Preschool",
+    date: "Jul 1, 2023, 10:15 AM",
+    content:
+      "Good news! You have moved up to position #3 on our waitlist. We expect to have availability soon.",
+    type: "waitlist",
+    read: false,
+    actions: ["Mark as Read", "Archive", "Delete"],
+  },
+  {
+    id: 3,
+    title: "Waitlist Position Update",
+    from: "Little Stars Preschool",
+    date: "Jul 1, 2023, 10:15 AM",
+    content:
+      "Good news! You have moved up to position #3 on our waitlist. We expect to have availability soon.",
+    type: "waitlist",
+    read: false,
+    actions: ["Mark as Read", "Archive", "Delete"],
+  },
+  {
+    id: 3,
+    title: "Waitlist Position Update",
+    from: "Little Stars Preschool",
+    date: "Jul 1, 2023, 10:15 AM",
+    content:
+      "Good news! You have moved up to position #3 on our waitlist. We expect to have availability soon.",
+    type: "waitlist",
+    read: false,
+    actions: ["Mark as Read", "Archive", "Delete"],
+  },
+  {
+    id: 3,
+    title: "Waitlist Position Update",
+    from: "Little Stars Preschool",
+    date: "Jul 1, 2023, 10:15 AM",
+    content:
+      "Good news! You have moved up to position #3 on our waitlist. We expect to have availability soon.",
+    type: "waitlist",
+    read: false,
+    actions: ["Mark as Read", "Archive", "Delete"],
+  },
+  {
+    id: 3,
+    title: "Waitlist Position Update",
+    from: "Little Stars Preschool",
+    date: "Jul 1, 2023, 10:15 AM",
+    content:
+      "Good news! You have moved up to position #3 on our waitlist. We expect to have availability soon.",
+    type: "waitlist",
+    read: false,
+    actions: ["Mark as Read", "Archive", "Delete"],
+  },
 ];
 
 const sidebarItems = [
   { label: "All Filters", active: false },
-  { label: "Parent Notifications", active: true, link: "/notifications" },
+  { label: "Parent Notifications", active: false, link: "/notifications" },
   { label: "School Administrator Notifications", active: false },
   {
     label: "Teacher Notifications",
-    active: false,
+    active: true,
     link: "/teacher-notifications",
   },
 ];
 
-export default function Notifications() {
+export default function TeacherNotifications() {
   const [selectedNotification, setSelectedNotification] = useState(
     notifications[0],
   );
@@ -122,76 +178,10 @@ export default function Notifications() {
             </h1>
           </div>
 
-          {selectedNotification && (
-            <Card className="border-purple-200 shadow-lg">
-              <CardHeader className="border-b border-purple-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="text-xl text-purple-900 mb-2">
-                      {selectedNotification.title}
-                    </CardTitle>
-                    <div className="space-y-1">
-                      <p className="text-sm text-purple-600">
-                        <strong>From:</strong> {selectedNotification.from}
-                      </p>
-                      <p className="text-sm text-purple-600">
-                        <strong>Date:</strong> {selectedNotification.date}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {!selectedNotification.read && (
-                      <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
-                        Mark as Read
-                      </Badge>
-                    )}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-purple-200 text-purple-600 hover:bg-purple-50"
-                    >
-                      Archive
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-red-200 text-red-600 hover:bg-red-50"
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="prose max-w-none">
-                  <p className="text-purple-700 leading-relaxed">
-                    {selectedNotification.content}
-                  </p>
-                </div>
-
-                <div className="flex items-center space-x-3 mt-8 pt-6 border-t border-purple-200">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => markAsRead(selectedNotification.id)}
-                    disabled={selectedNotification.read}
-                    className="border-green-200 text-green-600 hover:bg-green-50"
-                  >
-                    Reply to Vendor
-                  </Button>
-                  <span className="text-purple-400">or</span>
-                  <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                    Forward Message
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Notification List (could be shown in a sidebar or modal) */}
           <div className="mt-8">
             <h3 className="text-lg font-semibold text-purple-900 mb-4">
-              Recent Notifications
+              Teacher Notifications
             </h3>
             <div className="space-y-3">
               {notificationList.map((notif) => (

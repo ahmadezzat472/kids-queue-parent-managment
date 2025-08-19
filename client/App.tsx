@@ -13,6 +13,7 @@ import MyForms from "./pages/MyForms";
 import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import TeacherNotifications from "./pages/TeacherNotifications";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,10 @@ const App = () => (
             <Route path="/my-schools" element={<MySchools />} />
             <Route path="/my-forms" element={<MyForms />} />
             <Route path="/notifications" element={<Notifications />} />
+            <Route
+              path="/teacher-notifications"
+              element={<TeacherNotifications />}
+            />
             <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
