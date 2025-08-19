@@ -208,7 +208,7 @@ export default function Administrator() {
           {/* Notification List (could be shown in a sidebar or modal) */}
           <div className="mt-8">
             <h3 className="text-lg font-semibold text-purple-900 mb-4">
-              Teacher Notifications
+              Administrator Notifications
             </h3>
             <div className="space-y-3">
               {notificationList.map((notif) => (
