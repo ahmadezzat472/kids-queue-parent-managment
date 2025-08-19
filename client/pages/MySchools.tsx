@@ -275,7 +275,7 @@ export default function MySchools() {
               </div>
               <Button
                 variant="outline"
-                className="col-span-3 mt-4 bg-yellow-400 text-gray-800 hover:bg-yellow-500 rounded-md"
+                className="col-span-3 mt-4 bg-purple-400 text-gray-800 hover:bg-purple-500 rounded-md"
               >
                 + Add Another School
               </Button>
