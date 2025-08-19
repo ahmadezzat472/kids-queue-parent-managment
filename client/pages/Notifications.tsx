@@ -59,15 +59,15 @@ const notifications = [
 
 const sidebarItems = [
   { label: "All Filters", active: false },
-  { label: "Parent Notifications", active: false, link: "/notifications" },
+  { label: "Parent Notifications", active: true, link: "/notifications" },
   {
-    label: "School Administrator Notifications",
+    label: "Administrator Notifications",
     active: false,
     link: "/administrator-notifications",
   },
   {
     label: "Teacher Notifications",
-    active: true,
+    active: false,
     link: "/teacher-notifications",
   },
 ];

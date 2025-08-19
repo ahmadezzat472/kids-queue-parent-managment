@@ -132,7 +132,7 @@ const sidebarItems = [
   { label: "All Filters", active: false },
   { label: "Parent Notifications", active: false, link: "/notifications" },
   {
-    label: "School Administrator Notifications",
+    label: "Administrator Notifications",
     active: false,
     link: "/administrator-notifications",
   },
@@ -203,7 +203,7 @@ export default function TeacherNotifications() {
               Back to Messages
             </Button>
             <h1 className="text-2xl font-bold text-purple-900">
-              Parent Notifications
+              Teacher Notifications
             </h1>
           </div>
 
@@ -239,7 +239,9 @@ export default function TeacherNotifications() {
                             {notif.role}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 font-semibold">{notif.from}</p>
+                        <p className="text-sm text-gray-600 font-semibold">
+                          {notif.from}
+                        </p>
                         <p className="text-sm text-gray-700 mb-2 mt-0.5">
                           {notif.description}
                         </p>

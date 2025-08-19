@@ -9,8 +9,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { link } from "fs";
 import { Link } from "react-router-dom";
 
 const notifications = [
@@ -132,13 +130,13 @@ const sidebarItems = [
   { label: "All Filters", active: false },
   { label: "Parent Notifications", active: false, link: "/notifications" },
   {
-    label: "School Administrator Notifications",
-    active: false,
+    label: "Administrator Notifications",
+    active: true,
     link: "/administrator-notifications",
   },
   {
     label: "Teacher Notifications",
-    active: true,
+    active: false,
     link: "/teacher-notifications",
   },
 ];
@@ -203,7 +201,7 @@ export default function Administrator() {
               Back to Messages
             </Button>
             <h1 className="text-2xl font-bold text-purple-900">
-              Parent Notifications
+              Administrator Notifications
             </h1>
           </div>
 
