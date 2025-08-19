@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { link } from "fs";
+import { Link } from "react-router-dom";
 
 const notifications = [
   {
@@ -146,7 +147,7 @@ export default function TeacherNotifications() {
           <h2 className="text-lg font-bold text-black mb-6">Notifications</h2>
           <nav className="space-y-2">
             {sidebarItems.map((item, index) => (
-              <a href={item.link || "#"} key={index}>
+              <Link to={item.link || "#"} key={index}>
                 <button
                   key={index}
                   className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium ${
@@ -157,7 +158,7 @@ export default function TeacherNotifications() {
                 >
                   {item.label}
                 </button>
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
