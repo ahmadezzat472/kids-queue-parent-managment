@@ -1,69 +1,103 @@
-import { useState } from 'react';
-import { FileText, Upload, Download, Plus, AlertTriangle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useState } from "react";
+import { FileText, Upload, Download, Plus, AlertTriangle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const requiredForms = [
   {
     id: 1,
-    name: 'Immunization Records',
-    status: 'Required',
-    uploadStatus: 'Missing',
-    actions: ['Missing', 'Upload']
+    name: "Immunization Records",
+    status: "Required",
+    uploadStatus: "Missing",
+    actions: ["Missing", "Upload"],
   },
   {
     id: 2,
-    name: 'Birth Certificate',
-    status: 'Required',
-    uploadStatus: 'Missing',
-    actions: ['Missing', 'Upload']
+    name: "Birth Certificate",
+    status: "Required",
+    uploadStatus: "Missing",
+    actions: ["Missing", "Upload"],
   },
   {
     id: 3,
-    name: 'Proof of Address (Utility Bill or Lease)',
-    status: 'Required',
-    uploadStatus: 'Missing',
-    actions: ['Missing', 'Upload']
+    name: "Proof of Address (Utility Bill or Lease)",
+    status: "Required",
+    uploadStatus: "Missing",
+    actions: ["Missing", "Upload"],
   },
   {
     id: 4,
     name: "Parent ID (Driver's License or ID)",
-    status: 'Required',
-    uploadStatus: 'Missing',
-    actions: ['Missing', 'Upload']
+    status: "Required",
+    uploadStatus: "Missing",
+    actions: ["Missing", "Upload"],
   },
   {
     id: 5,
-    name: 'Medical Authorization Form',
-    status: '',
-    uploadStatus: 'Missing',
-    actions: ['Missing', 'Upload']
-  }
+    name: "Medical Authorization Form",
+    status: "Required",
+    uploadStatus: "Missing",
+    actions: ["Missing", "Upload"],
+  },
 ];
 
 export default function MyForms() {
   const [uploadingDocs, setUploadingDocs] = useState<number[]>([]);
+  const [open, setOpen] = useState(false);
+  const [docName, setDocName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+
   const completedCount = 0;
   const totalCount = 6;
   const progressPercentage = (completedCount / totalCount) * 100;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = () => {
+    // Handle form submission here
+    console.log("Document Name:", docName);
+    console.log("File:", file);
+    setOpen(false);
+    setDocName("");
+    setFile(null);
+  };
 
   const handleUpload = (formId: number) => {
     setUploadingDocs([...uploadingDocs, formId]);
     // Simulate upload
     setTimeout(() => {
-      setUploadingDocs(uploadingDocs.filter(id => id !== formId));
+      setUploadingDocs(uploadingDocs.filter((id) => id !== formId));
     }, 2000);
   };
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case 'required': return 'bg-red-100 text-red-700 hover:bg-red-100';
-      case 'missing': return 'bg-orange-100 text-orange-700 hover:bg-orange-100';
-      case 'uploaded': return 'bg-green-100 text-green-700 hover:bg-green-100';
-      default: return 'bg-gray-100 text-gray-700 hover:bg-gray-100';
+      case "required":
+        return "bg-red-100 text-red-700 hover:bg-red-100";
+      case "missing":
+        return "bg-orange-100 text-orange-700 hover:bg-orange-100";
+      case "uploaded":
+        return "bg-green-100 text-green-700 hover:bg-green-100";
+      default:
+        return "bg-gray-100 text-gray-700 hover:bg-gray-100";
     }
   };
 
@@ -72,7 +106,9 @@ export default function MyForms() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-purple-900 mb-2">My Forms</h1>
-        <p className="text-purple-600">Upload and manage required childcare documents</p>
+        <p className="text-gray-700">
+          Upload and manage required childcare documents
+        </p>
       </div>
 
       {/* Progress Section */}
@@ -84,10 +120,12 @@ export default function MyForms() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-purple-700 font-medium">0% Complete</span>
-              <span className="text-purple-600 text-sm">{completedCount} of {totalCount} Required Documents</span>
+              <span className="text-purple-600 text-sm">
+                {completedCount} of {totalCount} Required Documents
+              </span>
             </div>
             <Progress value={progressPercentage} className="h-3 bg-purple-100">
-              <div 
+              <div
                 className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-300"
                 style={{ width: `${progressPercentage}%` }}
               />
@@ -99,16 +137,21 @@ export default function MyForms() {
       {/* Standard Required Forms */}
       <Card className="mb-8 border-purple-200 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-purple-900">Standard Required Forms</CardTitle>
+          <CardTitle className="text-purple-900">
+            Standard Required Forms
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {requiredForms.map((form) => (
-              <div key={form.id} className="flex items-center justify-between p-4 border border-purple-200 rounded-lg hover:bg-purple-50/50 transition-colors">
+              <div
+                key={form.id}
+                className="flex items-center justify-between p-4 border border-purple-200 rounded-lg hover:bg-purple-50/50 transition-colors"
+              >
                 <div className="flex items-center space-x-3">
                   <FileText className="w-5 h-5 text-purple-600" />
                   <div>
-                    <h3 className="font-medium text-purple-900">{form.name}</h3>
+                    <h3 className="font-medium text-gray-900">{form.name}</h3>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -118,14 +161,14 @@ export default function MyForms() {
                     </Badge>
                   )}
                   <div className="flex space-x-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       className="border-orange-200 text-orange-600 hover:bg-orange-50"
                     >
                       Missing
                     </Button>
-                    <Button 
+                    <Button
                       size="sm"
                       onClick={() => handleUpload(form.id)}
                       disabled={uploadingDocs.includes(form.id)}
@@ -155,27 +198,83 @@ export default function MyForms() {
       <Card className="mb-8 border-purple-200 shadow-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-purple-900">Additional Documents</CardTitle>
-            <Button className="bg-green-600 hover:bg-green-700">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Other Document
-            </Button>
+            <CardTitle className="text-purple-900">
+              Additional Documents
+            </CardTitle>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-green-600 hover:bg-green-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Other Document
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Add New Document</DialogTitle>
+                  <DialogDescription>
+                    Enter the document name and upload the file.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="docName">Document Name</Label>
+                    <Input
+                      id="docName"
+                      value={docName}
+                      onChange={(e) => setDocName(e.target.value)}
+                      placeholder="Enter document name"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="fileUpload">Upload File</Label>
+                    <Input
+                      id="fileUpload"
+                      type="file"
+                      onChange={handleFileChange}
+                      accept=".pdf,.doc,.docx,.jpg,.png"
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    onClick={handleSubmit}
+                    disabled={!docName || !file}
+                  >
+                    Upload Document
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </CardHeader>
         <CardContent>
           <div className="text-center py-12 text-purple-600">
             <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p className="text-lg font-medium mb-2">No additional documents uploaded</p>
-            <p className="text-sm opacity-75">Add any other relevant documents for your application</p>
+            <p className="text-lg font-medium mb-2">
+              No additional documents uploaded
+            </p>
+            <p className="text-sm opacity-75">
+              Add any other relevant documents for your application
+            </p>
           </div>
         </CardContent>
       </Card>
 
       {/* Important Notice */}
-      <Alert className="border-amber-200 bg-amber-50">
-        <AlertTriangle className="h-4 w-4 text-amber-600" />
-        <AlertDescription className="text-amber-800">
-          <strong>Important:</strong> Documents are securely stored and shared only with authorized daycare centers. All uploads are encrypted and comply with privacy regulations.
+      <Alert className="border-orange-300 bg-orange-100">
+        <AlertTriangle className="h-4 w-4 text-orange-700" />
+        <AlertDescription className="text-orange-800">
+          <strong>Important:</strong> Documents are securely stored and shared
+          only with authorized daycare centers. All uploads are encrypted and
+          comply with privacy regulations.
         </AlertDescription>
       </Alert>
     </div>
